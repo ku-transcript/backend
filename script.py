@@ -15,7 +15,9 @@ def getStudentCoursesFromPDF(file):
       text = page.extract_text() 
 
       matches = re.findall(r"([A-D][+]?|[FPNW]) (\d{1}) ([\w ]+) (\d{8})", text, re.MULTILINE)
-      name = re.findall(r"(Miss|Mr.) ([\w ]+ [\w ]+)", text, re.MULTILINE)
+      name = re.findall(r"(Miss|Mr\.) ([\w ]+ [\w ]+)", text, re.MULTILINE)[0]
+      major = re.findall(r"(Field Of Study) ([\w ]+) (Miss|Mr\.)", text, re.MULTILINE)[0][1]
+      
       for match in matches:
           student_grade, course_credit, course_name, course_id = match
           courses.append({
