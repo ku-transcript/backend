@@ -16,12 +16,17 @@ def getStudentCoursesFromPDF(file):
       text = page.extract_text() 
 
       matches = re.findall(r"([A-D][+]?|[FPNW]) (\d{1}) ([\w ]+) (\d{8})", text, re.MULTILINE)
-      title, name = re.findall(r"(Miss|Mr\.) ([\w ]+ [\w ]+)", text, re.MULTILINE)[0]
+      en_title, en_name = re.findall(r"(Miss|Mr\.) ([\w ]+ [\w ]+)", text, re.MULTILINE)[0]
+      th_title, th_name = re.findall(r"(^น\w+) (.+)", text, re.MULTILINE)[0]
       major = re.findall(r"(Field Of Study) ([\w ]+) (Miss|Mr\.)", text, re.MULTILINE)[0][1]
-      # [(_, _, _)]
+      student_no, faculty = re.findall(r"Student No (\d+) ([\w ]+)", text, re.MULTILINE)[0]
       
-      data['student_title'] = title
-      data['student_name'] = name
+      data['student_id'] = student_no
+      data['student_en_title'] = en_title
+      data['student_en_name'] = en_name
+      data['student_th_title'] = th_title
+      data['student_th_name'] = th_name
+      data['student_faculty'] = faculty
       data['student_major'] = major
       
       for match in matches:
