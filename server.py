@@ -3,6 +3,7 @@
 import os
 from flask import Flask, request, render_template, jsonify
 import test
+from script import getTextFromPDF
 
 # Support for gomix's 'front-end' and 'back-end' UI.
 app = Flask(__name__, static_folder='public', template_folder='views')
@@ -20,6 +21,16 @@ def homepage():
   
 # @app.route('/dreams', methods=['GET', 'POST'])
 # def helloworld():
+
+@app.route('/api/upload', methods=['POST'])
+def upload():
+  if request.method == 'POST':   
+        f = request.files['file'] 
+        # f.save(f.filename)   
+        print(getTextFromPDF(f))
+        
+        return "file uploaded"
+  
 
 
 if __name__ == '__main__':
