@@ -4,7 +4,7 @@ import re
 import urllib.request
 import io
 
-def getTextFromPDF(file):
+def getStudentCoursesFromPDF(file):
   reader = PdfReader(file)
   courses = []
 
@@ -15,7 +15,7 @@ def getTextFromPDF(file):
       text = page.extract_text() 
 
       matches = re.findall(r"([A-D][+]?|[FPNW]) (\d{1}) ([\w ]+) (\d{8})", text, re.MULTILINE)
-
+      name = re.findall(r"(Miss|Mr.) ([\w ]+ [\w ]+)", text, re.MULTILINE)
       for match in matches:
           student_grade, course_credit, course_name, course_id = match
           courses.append({
@@ -34,37 +34,3 @@ def getTextFromPDF(file):
 # req = urllib.request.Request(URL, headers={'User-Agent' : "Magic Browser"})
 # remote_file = urllib.request.urlopen(req).read()
 # remote_file_bytes = io.BytesIO(remote_file)
-  
-# # creating a pdf reader object 
-# reader = PdfReader(remote_file_bytes)
-  
-# # printing number of pages in pdf file 
-# print(len(reader.pages)) 
-  
-# courses = []
-
-# # getting a specific page from the pdf file 
-# for i in range(len(reader.pages)):
-#     page = reader.pages[i] 
-#     # extracting text from page 
-#     text = page.extract_text() 
-
-#     matches = re.findall(r"([A-D][+]?|[FPNW]) (\d{1}) ([\w ]+) (\d{8})", text, re.MULTILINE)
-
-#     for match in matches:
-#         student_grade, course_credit, course_name, course_id = match
-#         courses.append({
-#           "student_grade": student_grade,
-#           "course_credit": course_credit,
-#           "course_name": course_name,
-#           "course_id": course_id
-#         })
-        
-#         print(student_grade, course_credit, course_name, course_id)
-    
-    # print(text) 
-
-# for course in courses:
-#     print(course)
-
-# print(courses)
