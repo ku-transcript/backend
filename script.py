@@ -3,6 +3,7 @@ import re
 import urllib.request
 import io
 
+# TODO: check if file is a transcript
 def getStudentCoursesFromPDF(file):
   reader = PdfReader(file)
   

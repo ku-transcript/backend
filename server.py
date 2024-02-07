@@ -18,6 +18,8 @@ def homepage():
 @app.route('/api/upload', methods=['POST'])
 def upload():
   if request.method == 'POST':   
+    
+        # TODO: check file type is PDF
         f = request.files['file'] 
         
         return jsonify(getStudentCoursesFromPDF(f))
