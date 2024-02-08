@@ -24,7 +24,7 @@ def clean_up_text(text):
   data = dict()
   courses = []
   
-  matches = re.findall(r"([A-D][+]?|[FPNW]) (\d{1}) ([\w ]+) (\d{8})", text, re.MULTILINE)
+  matches = re.findall(r"([A-D][+]?|[FPNW]) (\d{1}) (.+) (\d{8})", text, re.MULTILINE)
   en_title, en_name = re.findall(r"(Miss|Mr\.) ([\w ]+ [\w ]+)", text, re.MULTILINE)[0]
   th_title, th_name = re.findall(r"(^น\w+) (.+)", text, re.MULTILINE)[0]
   major = re.findall(r"(Field Of Study) ([\w ]+) (Miss|Mr\.)", text, re.MULTILINE)[0][1]
