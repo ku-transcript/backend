@@ -19,8 +19,8 @@ class FileData:
     return data1
   
 
-f = FileData()
+# f = FileData()
 
-data = f.fetch()
+# data = f.fetch()
 
-print(data)
+# print(data)
