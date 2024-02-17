@@ -1,0 +1,422 @@
+[
+  {
+    "course_id": "01417111",
+    "course_name": "Calculus I",
+    "course_credit": 3,
+    "course_category": "วิชาแกน"
+  },
+  {
+    "course_id": "01417112",
+    "course_name": "Calculus II",
+    "course_credit": 3,
+    "course_category": "วิชาแกน"
+  },
+  {
+    "course_id": "01417322",
+    "course_name": "Introductory Linear Algebra",
+    "course_credit": 3,
+    "course_category": "วิชาแกน"
+  },
+  {
+    "course_id": "01418132",
+    "course_name": "Fundamentals of Computing",
+    "course_credit": 4,
+    "course_category": "วิชาแกน"
+  },
+  {
+    "course_id": "01422111",
+    "course_name": "Principles of Statistics",
+    "course_credit": 3,
+    "course_category": "วิชาแกน"
+  },
+  {
+    "course_id": "01418341",
+    "course_name": "Intellectual Properties and Professional Ethics",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418221",
+    "course_name": "Fundamentals of Database Systems",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418321",
+    "course_name": "System Analysis and Design",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418390",
+    "course_name": "Co-operative Education Preparation",
+    "course_credit": 1,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418490",
+    "course_name": "Co-operative Education",
+    "course_credit": 6,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418497",
+    "course_name": "Seminar",
+    "course_credit": 1,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418499",
+    "course_name": "Computer Science Project",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418112",
+    "course_name": "Fundamental Programming Concepts",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418113",
+    "course_name": "Computer Programming",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418211",
+    "course_name": "Software Construction",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418231",
+    "course_name": "Data Structures",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418232",
+    "course_name": "Algorithm Design and Analysis",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418114",
+    "course_name": "Introduction to Computer Science",
+    "course_credit": 2,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418331",
+    "course_name": "Operating Systems",
+    "course_credit": 4,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418332",
+    "course_name": "Information Systems Security",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418333",
+    "course_name": "Automata Theory",
+    "course_credit": 2,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418334",
+    "course_name": "Compiler Techniques",
+    "course_credit": 2,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418351",
+    "course_name": "Computer Communications and Cloud Computing Principles",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418233",
+    "course_name": "Assembly Language and Computer Architecture",
+    "course_credit": 4,
+    "course_category": "วิชาเฉพาะบังคับ"
+  },
+  {
+    "course_id": "01418131",
+    "course_name": "Digital Computer Logic",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418212",
+    "course_name": "C Programming",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418213",
+    "course_name": "COBOL Programming",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418214",
+    "course_name": "Visual Programming",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418215",
+    "course_name": "Java Programming",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418216",
+    "course_name": "Principles of Programming Languages",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418217",
+    "course_name": "LISP Programming",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418218",
+    "course_name": "Prolog Programming",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418219",
+    "course_name": "Practicum in Software Development",
+    "course_credit": 1,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418222",
+    "course_name": "Internet Application for Commerce",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418234",
+    "course_name": "Programming Internet of Things",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418235",
+    "course_name": "Unix Operating System and Shell Programming",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418311",
+    "course_name": "Challenging Computational Programming",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418322",
+    "course_name": "Principles of Information System",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418323",
+    "course_name": "Introduction to Data Science",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418324",
+    "course_name": "Information Quality Management",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418325",
+    "course_name": "Database Management System Architecture",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418326",
+    "course_name": "Multimedia Database",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418327",
+    "course_name": "Decision Support and Business Intelligent Systems",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418328",
+    "course_name": "Human Resources Information System",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418335",
+    "course_name": "Data Compression",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418342",
+    "course_name": "Enterprise Resource Planning System Design and Development",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418343",
+    "course_name": "Computer Programming in Business",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418344",
+    "course_name": "Mobile Application Design and Development",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418352",
+    "course_name": "Data Communications and Networks",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418353",
+    "course_name": "Distributed and Cloud Systems",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418381",
+    "course_name": "Principles of Computer Animation",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418382",
+    "course_name": "Introduction to Interactive Computer Graphics",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418383",
+    "course_name": "Game Programming",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418384",
+    "course_name": "Image Analysis and Computer Vision",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418385",
+    "course_name": "Digital Image Processing",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418421",
+    "course_name": "Human Computer Interaction",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418441",
+    "course_name": "Business Data Dimension and Report Management",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418442",
+    "course_name": "Web Technology and Web Services",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418451",
+    "course_name": "Network Design and Administration",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418461",
+    "course_name": "Information Retrieval System",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418462",
+    "course_name": "Artificial Intelligence",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418471",
+    "course_name": "Introduction to Software Engineering",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418472",
+    "course_name": "Project Management and Control",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418473",
+    "course_name": "Computer Control and Audit",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418474",
+    "course_name": "Software Quality Management",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418475",
+    "course_name": "Software Testing and Verification",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418476",
+    "course_name": "Software Measurement",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418481",
+    "course_name": "Multi-Character Animation",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418482",
+    "course_name": "Computer Graphics",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
+    "course_id": "01418496",
+    "course_name": "Selected Topic in Computer Science",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  }
+]
