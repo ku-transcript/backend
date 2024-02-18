@@ -1,3 +1,5 @@
+import re
+
 class CS60Validator:
   
   required_credit = {
@@ -11,10 +13,6 @@ class CS60Validator:
     'อยู่ดีมีสุข': 3
   }
   
-  required_gened_course = [
-    
-  ]
-  
   def validate(self, student_data, total_credit):
         
     # check credit
@@ -26,6 +24,11 @@ class CS60Validator:
       
     # check required course 
     enrolled_courses = student_data["enrolled_courses"]
+    
+    for enrolled_course in enrolled_courses:
+      course_id = enrolled_course["course_id"]
+      
+      match = re.search("01175\d{3}", course_id)
     
     # check grade
     if student_data["student_cum_gpa"] < 2:
