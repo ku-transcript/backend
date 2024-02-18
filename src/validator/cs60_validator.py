@@ -23,7 +23,7 @@ class CS60Validator:
       if total_credit[course_category] < self.required_credit[course_category]:
         return False
       
-#     # check required course 
+#     # check required course (e.g. P.E, Eng)
 #     enrolled_courses = student_data["enrolled_courses"]
     
 #     sport = 0
