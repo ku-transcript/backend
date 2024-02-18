@@ -23,9 +23,11 @@ def check_graduation(student_data):
   # Currently except only CS Major (TODO: throw error)
   
   student_data.update({
-    is_graduate: result,
-    total_
+    "is_graduate": result,
+    "total_credit_per_category": total_credit
   })
+  
+  return student_data
   
   
 # Test
@@ -265,3 +267,5 @@ student_data = {
 }
 
 result = check_graduation(student_data) # False
+
+print(result)
