@@ -8,7 +8,7 @@ class FileData:
   @return list of courses
   '''
   def fetch(self):
-    file1 = open("data/ku_ge.json")
+    file1 = open("data/ku_all_ge.json")
     file2 = open("data/ku_cs60.json")
     
     data1 = json.load(file1) # list of gened courses

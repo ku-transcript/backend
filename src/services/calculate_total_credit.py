@@ -13,6 +13,11 @@ def calculate(enrolled_courses, courses):
         else:
           total_credit[course["course_category"]] += course["course_credit"]
           
+        if course["course_faculty"] not in total_credit:
+          total_credit[course["course_faculty"]] = course["course_credit"]
+        else:
+          total_credit[course["course_faculty"]] += course["course_credit"]
+          
   return total_credit
 
 
