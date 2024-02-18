@@ -3,10 +3,11 @@ from fetch_data_from_file import FileData
 def calculate(enrolled_courses, courses):
   
   total_credit = {}
+  ignore_grades = ["P", "F", "W"]
   
   for enrolled_course in enrolled_courses:
     for course in courses:
-      if course["course_id"] == enrolled_course["course_id"] and enrolled_course["student_grade"] not in ["P", "F", "W"]:
+      if course["course_id"] == enrolled_course["course_id"] and enrolled_course["student_grade"] not in ignore_grades:
         if course["course_category"] not in total_credit:
           total_credit[course["course_category"]] = course["course_credit"]
         else:
@@ -249,6 +250,7 @@ enrolled_courses = [
         }
 ]
 
-total_credit = calculate(enrolled_courses, courses)
+total_credit = calculate(enrolled_courses, courses)  
 
 print(total_credit)
+print(sum(total_credit.values()))
