@@ -17,8 +17,6 @@ def get_student_data(file):
   print(text)
   data = clean_up_text(text)
   
-  # TODO: if student's major is not CS throw error (Currently support only CS major)
-
   return data
 
 def clean_up_text(text):

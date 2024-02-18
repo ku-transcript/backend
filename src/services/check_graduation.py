@@ -1,6 +1,6 @@
 from validate_data import validate
 from calculate_total_credit import calculate
-from fetch_data_from_file import FileData
+from data_source_file import DataSourceFile
 # Quickly import file from another folder (NOT GOOD!)
 import sys
 sys.path.append("src/validator")
@@ -10,9 +10,7 @@ def check_graduation(student_data):
   student_id = student_data["student_id"]
   years = int(student_id[0:2])
   
-  f = FileData()
-  courses = f.fetch()
-  total_credit = calculate(student_data["enrolled_courses"], courses)
+  total_credit = calculate(student_data["enrolled_courses"], DataSourceFile())
   
   result = None
   
