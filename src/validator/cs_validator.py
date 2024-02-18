@@ -56,7 +56,8 @@ class CS60Validator:
       # science 5 credit
       
     if sport < 1 or eng < 3 or thai < 1 or knowledge_of_the_land < 1 or digital < 1:
-    
+      return False
+      
     # check grade
     if student_data["student_cum_gpa"] < 2:
       return False
