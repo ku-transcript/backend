@@ -13,7 +13,8 @@ def get_student_data(file):
       page = reader.pages[i] 
       # extracting text from page 
       text += page.extract_text() 
-
+  
+  print(text)
   data = clean_up_text(text)
   
   # TODO: if student's major is not CS throw error (Currently support only CS major)
@@ -29,6 +30,10 @@ def clean_up_text(text):
   th_title, th_name = re.findall(r"(^น\w+) (.+)", text, re.MULTILINE)[0]
   major = re.findall(r"(Field Of Study) ([\w ]+) (Miss|Mr\.)", text, re.MULTILINE)[0][1]
   student_no, faculty = re.findall(r"Student No (\d+) ([\w ]+)", text, re.MULTILINE)[0]
+  cum_grade = re.findall(r"cum G.P.A = .+", text, re.MULTILINE)
+  
+  print(cum_grade)
+  # "cum G.P.A. = 3.67"
 
   data['student_id'] = student_no
   data['student_en_title'] = en_title
@@ -47,7 +52,7 @@ def clean_up_text(text):
         "course_id": course_id
       })
 
-      print(student_grade, course_credit, course_name, course_id)
+      # print(student_grade, course_credit, course_name, course_id)
 
   data['enrolled_courses'] = courses
 
