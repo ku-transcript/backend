@@ -30,11 +30,8 @@ def clean_up_text(text):
   th_title, th_name = re.findall(r"(^น\w+) (.+)", text, re.MULTILINE)[0]
   major = re.findall(r"(Field Of Study) ([\w ]+) (Miss|Mr\.)", text, re.MULTILINE)[0][1]
   student_no, faculty = re.findall(r"Student No (\d+) ([\w ]+)", text, re.MULTILINE)[0]
-  cum_grade = re.findall(r"cum G.P.A = .+", text, re.MULTILINE)
+  cum_gpa = re.findall(r"cum G.P.A. = (\d+(?:\.\d+)?)", text, re.MULTILINE)[-1]
   
-  print(cum_grade)
-  # "cum G.P.A. = 3.67"
-
   data['student_id'] = student_no
   data['student_en_title'] = en_title
   data['student_en_name'] = en_name
@@ -42,6 +39,7 @@ def clean_up_text(text):
   data['student_th_name'] = th_name
   data['student_faculty'] = faculty
   data['student_major'] = major
+  data['student_cum_gpa'] = float(cum_gpa)
 
   for match in matches:
       student_grade, course_credit, course_name, course_id = match
