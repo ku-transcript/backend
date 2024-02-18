@@ -45,7 +45,7 @@ def clean_up_text(text):
       student_grade, course_credit, course_name, course_id = match
       courses.append({
         "student_grade": student_grade,
-        "course_credit": course_credit,
+        "course_credit": int(course_credit),
         "course_name": course_name,
         "course_id": course_id
       })
