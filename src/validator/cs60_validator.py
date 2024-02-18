@@ -14,6 +14,8 @@ class CS60Validator:
     'คณะวิทยาศาสตร์': 5,
   }
   
+  min_sum_credit = 128
+  
   def validate(self, student_data):
     # check credit
     course_categories = self.required_credit.keys()
@@ -59,7 +61,11 @@ class CS60Validator:
     if pe < 1 or eng < 3 or thai < 1 or knowledge_of_the_land < 1 or digital < 1:
       return False
     
-    if sum([total_credit[c] for c in ['วิชาแกน', 'วิชาเฉพาะบังคับ', 'วิชาเฉพาะเลือก', 'ภาษากับการสื่อสาร', 'พลเมืองไทยและพลเมืองโลก', 'ศาสตร์แห่งผู้ประกอบการ']])
+    # check sum of credit more then required minimum
+    sum_credit = sum([total_credit[c] for c in ['วิชาแกน', 'วิชาเฉพาะบังคับ', 'วิชาเฉพาะเลือก', 'ภาษากับการสื่อสาร', 'พลเมืองไทยและพลเมืองโลก', 'ศาสตร์แห่งผู้ประกอบการ', 'อยู่ดีมีสุข']])
+    
+    if sum_credit < self.min_sum_credit:
+      return False
       
     # check grade
     if student_data["student_cum_gpa"] < 2:
