@@ -1,13 +1,24 @@
 from validate_data import validate
+from calculate_total_credit import calculate
+from fetch_data_from_file import FileData
 # Quickly import file from another folder (NOT GOOD!)
 import sys
 sys.path.append("src/validator")
 from cs60_validator import CS60Validator
 
 def check_graduation(student_data):
+  student_id = student_data["student_id"]
+  years = int(student_id[0:2])
   
-  if student_data["student_major"] == "Computer Science":
-    return validate(student_data, CS60Validator())
+  f = FileData()
+  courses = f.fetch()
+  total_credit = calculate(student_data["enrolled_courses"], courses)
+  
+  # Add more if-else for different major and years
+  if student_data["student_major"] == "Computer Science" and years >= 60 and years < 65:
+    return validate(student_data, total_credit, CS60Validator())
+  
+  # Currently except only CS Major (TODO: throw error)
   
 # Test
 student_data = {
