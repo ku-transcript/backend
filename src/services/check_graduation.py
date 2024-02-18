@@ -1,5 +1,6 @@
 from validate_data import validate
-from .validator.cs60_validator import CS60Validator
+# from .validator.cs60_validator import CS60Validator
+from validator import cs_60_validator
 
 def check_graduation(student_data):
   
