@@ -6,5 +6,5 @@ Validate if the student is graduated or not using the validator
 
 @return True if graduate otherwise False
 '''
-def validate(student_data, total_credit, validator):
-  return validator.validate(student_data, total_credit)
+def validate(student_data, validator):
+  return validator.validate(student_data)

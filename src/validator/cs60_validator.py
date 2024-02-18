@@ -14,10 +14,10 @@ class CS60Validator:
     'คณะวิทยาศาสตร์': 5,
   }
   
-  def validate(self, student_data, total_credit):
-        
+  def validate(self, student_data):
     # check credit
     course_categories = self.required_credit.keys()
+    total_credit = student_data["total_credit_per_category"]
     
     for course_category in course_categories:
       if total_credit[course_category] < self.required_credit[course_category]:
@@ -26,7 +26,7 @@ class CS60Validator:
     # check required course (e.g. P.E, Eng)
     enrolled_courses = student_data["enrolled_courses"]
     
-    sport = 0
+    pe = 0
     eng = 0
     thai = 0
     knowledge_of_the_land = 0
@@ -36,9 +36,9 @@ class CS60Validator:
     for enrolled_course in enrolled_courses:
       course_id = enrolled_course["course_id"]
       
-      # sport
+      # pe
       if re.search("01175\d{3}", course_id):
-        sport += 1
+        pe += 1
             
       # eng
       if re.search("01355\d{3}", course_id):
@@ -56,8 +56,10 @@ class CS60Validator:
       if re.search("01418131|01420245|01420246", course_id):
         digital += 1
             
-    if sport < 1 or eng < 3 or thai < 1 or knowledge_of_the_land < 1 or digital < 1:
+    if pe < 1 or eng < 3 or thai < 1 or knowledge_of_the_land < 1 or digital < 1:
       return False
+    
+    if sum([total_credit[c] for c in ['วิชาแกน', 'วิชาเฉพาะบังคับ', 'วิชาเฉพาะเลือก', 'ภาษากับการสื่อสาร', 'พลเมืองไทยและพลเมืองโลก', 'ศาสตร์แห่งผู้ประกอบการ']])
       
     # check grade
     if student_data["student_cum_gpa"] < 2:
