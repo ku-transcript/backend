@@ -14,11 +14,19 @@ def check_graduation(student_data):
   courses = f.fetch()
   total_credit = calculate(student_data["enrolled_courses"], courses)
   
-  # Add more if-else for different major and years
+  result = None
+  
+  # (FUTURE) Add more if-else for different major and years
   if student_data["student_major"] == "Computer Science" and years >= 60 and years < 65:
-    return validate(student_data, total_credit, CS60Validator())
+    result = validate(student_data, total_credit, CS60Validator())
   
   # Currently except only CS Major (TODO: throw error)
+  
+  student_data.update({
+    is_graduate: result,
+    total_
+  })
+  
   
 # Test
 student_data = {
