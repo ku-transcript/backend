@@ -7,12 +7,16 @@ def calculate(enrolled_courses, courses):
   
   for enrolled_course in enrolled_courses:
     for course in courses:
-      if course["course_id"] == enrolled_course["course_id"] and enrolled_course["student_grade"] not in ignore_grades:
-        if course["course_category"] not in total_credit:
-          total_credit[course["course_category"]] = course["course_credit"]
-        else:
-          total_credit[course["course_category"]] += course["course_credit"]
-          
+      
+      if course["course_id"] != enrolled_course["course_id"] or enrolled_course["student_grade"] in ignore_grades:
+        continue
+      
+      if course["course_category"] not in total_credit:
+        total_credit[course["course_category"]] = course["course_credit"]
+      else:
+        total_credit[course["course_category"]] += course["course_credit"]
+
+      if "course_faculty" in course:
         if course["course_faculty"] not in total_credit:
           total_credit[course["course_faculty"]] = course["course_credit"]
         else:
@@ -24,6 +28,7 @@ def calculate(enrolled_courses, courses):
 f = FileData()
 courses = f.fetch()
 
+# T.
 enrolled_courses = [
         {
             "course_credit": "3",
@@ -258,4 +263,6 @@ enrolled_courses = [
 total_credit = calculate(enrolled_courses, courses)  
 
 print(total_credit)
-print(sum(total_credit.values()))
+# print(list(filter(lambda x: x if x in ["วิชาแกน", "วิชาเฉพาะบังคับ", "วิชาเฉพาะเลือก", "ภาษากับการสื่อสาร", "พลเมืองไทยและพลเมืองโลก", "ศาสตร์แห่งผู้ประกอบการ", "สุนทรียศาสตร์", "อยู่ดีมีสุข"] else None, total_credit)))
+
+sum([total_credit[c] for c in ["วิชาแกน", "วิชาเฉพาะบังคับ", "วิชาเฉพาะเลือก", "ภาษากับการสื่อสาร", "พลเมืองไทยและพลเมืองโลก", "ศาสตร์แห่งผู้ประกอบการ", "สุนทรียศาสตร์", "อยู่ดีมีสุข"]])
