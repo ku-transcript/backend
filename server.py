@@ -15,6 +15,10 @@ app = Flask(__name__, static_folder='public', template_folder='views')
 # Set the app secret key from the secret environment variables.
 app.secret = os.environ.get('SECRET')
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 @app.route('/')
 def homepage():
     """Displays the homepage."""
@@ -22,10 +26,18 @@ def homepage():
 
 @app.route('/api/upload', methods=['POST'])
 def upload():
+  ALLOWED_EXTENSION = { '.pdf' }
+  
   if request.method == 'POST':   
     
         # TODO: check file type is PDF
+        
+        if 'file' not in request.files:
+          return
+        
         f = request.files['file'] 
+        
+        if f and allowed_file(f)
         
         student_data = get_student_data(f)
         student_data.update({
