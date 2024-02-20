@@ -17,7 +17,8 @@ app = Flask(__name__, static_folder='public', template_folder='views')
 app.secret = os.environ.get('SECRET')
 
 def allowed_file(filename):
-  ALLOWED_EXTENSION = { '.pdf' }
+  ALLOWED_EXTENSIONS = { 'pdf' }
+  print(filename)
   return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -37,7 +38,7 @@ def upload():
 
     f = request.files['file'] 
 
-    if not allowed_file(f):
+    if not allowed_file(f.filename):
       return "File type not allowed only support pdf", 400
 
     student_data = get_student_data(f)

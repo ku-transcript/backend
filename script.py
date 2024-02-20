@@ -2,6 +2,7 @@ from PyPDF2 import PdfReader
 import re
 import urllib.request
 import io
+from datetime import datetime
 
 # TODO: check if file is a transcript
 def get_student_data(file):
@@ -29,7 +30,8 @@ def clean_up_text(text):
   major = re.findall(r"(Field Of Study) ([\w ]+) (Miss|Mr\.)", text, re.MULTILINE)[0][1]
   student_no, faculty = re.findall(r"Student No (\d+) ([\w ]+)", text, re.MULTILINE)[0]
   cum_gpa = re.findall(r"cum G.P.A. = (\d+(?:\.\d+)?)", text, re.MULTILINE)[-1]
-  
+  date_of_admission = re.findall(r"Date Of Admission ((?:January|February|March|April|May|June|July|August|September|October|November|December)   \d{1,2}, \d{4})", text, re.MULTILINE)[0]
+    
   data['student_id'] = student_no
   data['student_en_title'] = en_title
   data['student_en_name'] = en_name
@@ -38,6 +40,7 @@ def clean_up_text(text):
   data['student_faculty'] = faculty
   data['student_major'] = major
   data['student_cum_gpa'] = float(cum_gpa)
+  data['date_of_admission'] = datetime.strptime(date_of_admission, '%B %d, %Y')
 
   for match in matches:
       student_grade, course_credit, course_name, course_id = match
