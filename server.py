@@ -2,11 +2,12 @@
 
 import os
 from flask import Flask, request, render_template, jsonify
-# from flask_api import status
 from script import get_student_data
 
+# Quickly import file from another folder (NOT GOOD!)
 import sys
 sys.path.append("src/services")
+sys.path.append("src/validator")
 
 from check_graduation import check_graduation
 # from calculate_total_credit import calculate
