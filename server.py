@@ -9,12 +9,15 @@ sys.path.append("src/services")
 from check_graduation import check_graduation
 from calculate_total_credit import calculate
 from data_source_file import DataSourceFile
+import db
 
 # Support for gomix's 'front-end' and 'back-end' UI.
 app = Flask(__name__, static_folder='public', template_folder='views')
 
 # Set the app secret key from the secret environment variables.
 app.secret = os.environ.get('SECRET')
+
+db.init_app(app)
 
 def allowed_file(filename):
   ALLOWED_EXTENSIONS = { 'pdf' }
