@@ -286,25 +286,25 @@ def select():
 
     print(d)
 
-@click.command('init-db')
-@with_appcontext
-def init_db_command():
-    init_db()
-    click.echo('Initialized the database.')
+# @click.command('init-db')
+# @with_appcontext
+# def init_db_command():
+#     init_db()
+#     click.echo('Initialized the database.')
     
-@click.command('insert-db')
-@with_appcontext
-def insert_command():
-    insert()
-    click.echo('Insert courses to the database.')
+# @click.command('insert-db')
+# @with_appcontext
+# def insert_command():
+#     insert()
+#     click.echo('Insert courses to the database.')
     
-@click.command('select-db')
-@with_appcontext
-def select_command():
-    select()
+# @click.command('select-db')
+# @with_appcontext
+# def select_command():
+#     select()
     
-def init_app(app):
-    app.teardown_appcontext(close_db)
-    app.cli.add_command(init_db_command)
-    app.cli.add_command(select_command)
-    app.cli.add_command(insert_command)
+# def init_app(app):
+#     app.teardown_appcontext(close_db)
+#     app.cli.add_command(init_db_command)
+#     app.cli.add_command(select_command)
+#     app.cli.add_command(insert_command)

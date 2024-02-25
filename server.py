@@ -17,8 +17,6 @@ app = Flask(__name__, static_folder='public', template_folder='views')
 # Set the app secret key from the secret environment variables.
 app.secret = os.environ.get('SECRET')
 
-db.init_app(app)
-
 def allowed_file(filename):
   ALLOWED_EXTENSIONS = { 'pdf' }
   print(filename)
