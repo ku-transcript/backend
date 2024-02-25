@@ -1,4 +1,6 @@
-CREATE TABLE IF NOT EXISTS courses (
+DROP TABLE IF EXISTS courses;
+
+CREATE TABLE courses (
     course_id CHAR(8) PRIMARY KEY, 
     course_name VARCHAR(255), 
     course_credit INT, 

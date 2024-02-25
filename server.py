@@ -10,6 +10,8 @@ from check_graduation import check_graduation
 from calculate_total_credit import calculate
 from data_source_file import DataSourceFile
 
+import insert
+
 # Support for gomix's 'front-end' and 'back-end' UI.
 app = Flask(__name__, static_folder='public', template_folder='views')
 
@@ -49,4 +51,9 @@ def upload():
     return jsonify(check_graduation(student_data))
   
 if __name__ == '__main__':
+
+  d = DataSourceFile()
+  insert.sync(d.fetch())
+  print("Start")
+  
   app.run(debug = True)

@@ -1,13 +1,7 @@
-# import sqlite3
 import db
 
-# Create a connection to the database
-# conn = sqlite3.connect('courses.db')
-# conn.row_factory = sqlite3.Row   #   add this row
-    
-# cur = conn.cursor()
-
-cur
+conn = db.get_db_connection()
+cur = conn.cursor()
 
 enrolled_courses = [
   {
@@ -240,6 +234,8 @@ enrolled_course_ids = [course['course_id'] for course in enrolled_courses if cou
 res = cur.execute('SELECT course_category, SUM(course_credit) AS total_credit FROM courses WHERE course_id IN (%s) GROUP BY course_category' % ','.join('?'*len(enrolled_course_ids)), enrolled_course_ids)
 data = res.fetchall()
 
+conn.close()
+
 d = dict()
 
 for r in data: 
@@ -247,3 +243,4 @@ for r in data:
     d[result['course_category']] = result['total_credit']
 
 print(d)
+
