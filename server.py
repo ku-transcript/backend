@@ -51,9 +51,6 @@ def upload():
     return jsonify(check_graduation(student_data))
   
 if __name__ == '__main__':
-
-  d = DataSourceFile()
-  insert.sync(d.fetch())
-  print("Start")
+  insert.sync(DataSourceFile().fetch())
   
   app.run(debug = True)

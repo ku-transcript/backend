@@ -3,7 +3,10 @@ import db
 def sync(data):
   conn = db.get_db_connection()
   cur = conn.cursor()
-    
+  
+  # Remove before sync
+  cur.execute("DELETE FROM courses");
+  
   # Insert data into the table
   for course in data:
       cur.execute("INSERT INTO courses (course_id, course_name, course_credit, course_category, course_faculty) VALUES (?, ?, ?, ?, ?)", 
