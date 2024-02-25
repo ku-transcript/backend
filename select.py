@@ -1,10 +1,13 @@
-import sqlite3
+# import sqlite3
+import db
 
 # Create a connection to the database
-conn = sqlite3.connect('courses.db')
-conn.row_factory = sqlite3.Row   #   add this row
+# conn = sqlite3.connect('courses.db')
+# conn.row_factory = sqlite3.Row   #   add this row
     
-cur = conn.cursor()
+# cur = conn.cursor()
+
+cur
 
 enrolled_courses = [
   {

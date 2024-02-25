@@ -32,3 +32,10 @@
 #     with current_app.open_resource('schema.sql') as f:
 #         print(f.read().decode('utf8'))
 #         db.executescript(f.read().decode('utf8'))
+
+import sqlite3
+
+def get_db_connection():
+    conn = sqlite3.connect('database.db')
+    conn.row_factory = sqlite3.Row
+    return conn
