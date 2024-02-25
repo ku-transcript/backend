@@ -4,6 +4,14 @@ import urllib.request
 import io
 from datetime import datetime
 
+COURSES_REGEX = r"([A-D][+]?|[FPNW]) (\d{1}) (.+) (\d{8})"
+EN_NAME_REGEX = r"(Miss|Mr\.) ([\w ]+ [\w ]+)"
+TH_NAME_REGEX = r"(^น\w+) (.+)"
+MAJOR_REGEX = r"(Field Of Study) ([\w ]+) (Miss|Mr\.)"
+STUDENT_NO_FACULTY_REGEX = r"Student No (\d+) ([\w ]+)"
+CUM_GPA_REGEX = r"cum G.P.A. = (\d+(?:\.\d+)?)"
+DOA_REGEX = r"Date Of Admission ((?:January|February|March|April|May|June|July|August|September|October|November|December)   \d{1,2}, \d{4})"
+
 # TODO: check if file is a transcript
 def get_student_data(file):
   reader = PdfReader(file)
@@ -24,13 +32,13 @@ def clean_up_text(text):
   data = dict()
   courses = []
   
-  matches = re.findall(r"([A-D][+]?|[FPNW]) (\d{1}) (.+) (\d{8})", text, re.MULTILINE)
-  en_title, en_name = re.findall(r"(Miss|Mr\.) ([\w ]+ [\w ]+)", text, re.MULTILINE)[0]
-  th_title, th_name = re.findall(r"(^น\w+) (.+)", text, re.MULTILINE)[0]
-  major = re.findall(r"(Field Of Study) ([\w ]+) (Miss|Mr\.)", text, re.MULTILINE)[0][1]
-  student_no, faculty = re.findall(r"Student No (\d+) ([\w ]+)", text, re.MULTILINE)[0]
-  cum_gpa = re.findall(r"cum G.P.A. = (\d+(?:\.\d+)?)", text, re.MULTILINE)[-1]
-  date_of_admission = re.findall(r"Date Of Admission ((?:January|February|March|April|May|June|July|August|September|October|November|December)   \d{1,2}, \d{4})", text, re.MULTILINE)[0]
+  matches = re.findall(COURSES_REGEX, text, re.MULTILINE)
+  en_title, en_name = re.findall(EN_NAME_REGEX, text, re.MULTILINE)[0]
+  th_title, th_name = re.findall(TH_NAME_REGEX, text, re.MULTILINE)[0]
+  major = re.findall(MAJOR_REGEX, text, re.MULTILINE)[0][1]
+  student_no, faculty = re.findall(STUDENT_NO_FACULTY_REGEX, text, re.MULTILINE)[0]
+  cum_gpa = re.findall(CUM_GPA_REGEX, text, re.MULTILINE)[-1]
+  date_of_admission = re.findall(DOA_REGEX, text, re.MULTILINE)[0]
     
   data['student_id'] = student_no
   data['student_en_title'] = en_title
