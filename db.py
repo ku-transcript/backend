@@ -32,25 +32,3 @@
 #     with current_app.open_resource('schema.sql') as f:
 #         print(f.read().decode('utf8'))
 #         db.executescript(f.read().decode('utf8'))
-
-import sqlite3
-
-connection = sqlite3.connect('courses.db')
-
-
-with open('schema.sql', "rb") as f:
-    connection.executescript(f.read().decode('utf8'))
-
-# cur = connection.cursor()
-
-# cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-#             ('First Post', 'Content for the first post')
-#             )
-
-# cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-#             ('Second Post', 'Content for the second post')
-#             )
-
-connection.commit()
-print("Initialized the database.")
-connection.close()
