@@ -25,7 +25,6 @@ app.secret = os.environ.get('SECRET')
 
 def allowed_file(filename):
   ALLOWED_EXTENSIONS = { 'pdf' }
-  print(filename)
   return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -39,12 +38,13 @@ def upload():
   
   if request.method == 'POST':   
     
-    # Check file type is PDF
+    # Check if file is uploaded
     if 'file' not in request.files:
       return "No file uploaded", 400
 
     f = request.files['file'] 
-
+    
+     # Check file type is PDF
     if not allowed_file(f.filename):
       return "File type not allowed only support pdf", 400
 
