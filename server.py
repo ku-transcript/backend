@@ -8,10 +8,10 @@ import sys
 sys.path.append("src/services")
 sys.path.append("src/validator")
 sys.path.append("src/utils")
+sys.path.append("src/calculator")
 
 from check_graduation import check_graduation
-# from calculate_total_credit import calculate
-from calculate_total_credit_sql import calculate
+from credit_sql_calculator import CreditSQLCalculator
 from data_source_file import DataSourceFile
 from get_student_data import get_student_data
 
@@ -50,7 +50,7 @@ def upload():
 
     student_data = get_student_data(f)
     student_data.update({
-      "total_credit_per_category": calculate(student_data["enrolled_courses"])
+      "total_credit_per_category": CreditSQLCalculator().calculate_total_credit(student_data["enrolled_courses"])
     })
 
     return jsonify(check_graduation(student_data))
