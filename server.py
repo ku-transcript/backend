@@ -8,6 +8,7 @@ from script import get_student_data
 import sys
 sys.path.append("src/services")
 sys.path.append("src/validator")
+sys.path.append("src/utils")
 
 from check_graduation import check_graduation
 # from calculate_total_credit import calculate
