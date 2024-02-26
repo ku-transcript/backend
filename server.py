@@ -24,38 +24,38 @@ app = Flask(__name__, static_folder='public', template_folder='views')
 app.secret = os.environ.get('SECRET')
 
 def allowed_file(filename):
-  ALLOWED_EXTENSIONS = { 'pdf' }
-  return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    ALLOWED_EXTENSIONS = { 'pdf' }
+    return '.' in filename and \
+             filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 def homepage():
-  """Displays the homepage."""
-  return render_template('index.html')
+    """Displays the homepage."""
+    return render_template('index.html')
 
 @app.route('/api/upload', methods=['POST'])
 def upload():
   
-  if request.method == 'POST':   
-    
-    # Check if file is uploaded
-    if 'file' not in request.files:
-      return "No file uploaded", 400
+    if request.method == 'POST':   
 
-    f = request.files['file'] 
-    
-     # Check file type is PDF
-    if not allowed_file(f.filename):
-      return "File type not allowed only support pdf", 400
+      # Check if file is uploaded
+      if 'file' not in request.files:
+        return "No file uploaded", 400
 
-    student_data = get_student_data(f)
-    student_data.update({
-      "total_credit_per_category": CreditSQLCalculator().calculate_total_credit(student_data["enrolled_courses"])
-    })
+      f = request.files['file'] 
 
-    return jsonify(check_graduation(student_data))
+       # Check file type is PDF
+      if not allowed_file(f.filename):
+        return "File type not allowed only support pdf", 400
+
+      student_data = get_student_data(f)
+      student_data.update({
+        "total_credit_per_category": CreditSQLCalculator().calculate_total_credit(student_data["enrolled_courses"])
+      })
+
+      return jsonify(check_graduation(student_data))
   
 if __name__ == '__main__':
-  db.sync(DataSourceFile().fetch())
-  
-  app.run(debug = True)
+    db.sync(DataSourceFile().fetch())
+
+    app.run(debug = True)
