@@ -30,30 +30,27 @@ def allowed_file(filename):
 
 @app.route('/')
 def homepage():
-    """Displays the homepage."""
     return render_template('index.html')
 
 @app.route('/api/upload', methods=['POST'])
 def upload():
   
-    if request.method == 'POST':   
+    # Check if file is uploaded
+    if 'file' not in request.files:
+      return "No file uploaded", 400
 
-      # Check if file is uploaded
-      if 'file' not in request.files:
-        return "No file uploaded", 400
+    f = request.files['file'] 
 
-      f = request.files['file'] 
+     # Check file type is PDF
+    if not allowed_file(f.filename):
+      return "File type not allowed only support pdf", 400
 
-       # Check file type is PDF
-      if not allowed_file(f.filename):
-        return "File type not allowed only support pdf", 400
+    student_data = get_student_data(f)
+    student_data.update({
+      "total_credit_per_category": CreditSQLCalculator().calculate_total_credit(student_data["enrolled_courses"])
+    })
 
-      student_data = get_student_data(f)
-      student_data.update({
-        "total_credit_per_category": CreditSQLCalculator().calculate_total_credit(student_data["enrolled_courses"])
-      })
-
-      return jsonify(check_graduation(student_data))
+    return jsonify(check_graduation(student_data))
   
 if __name__ == '__main__':
     db.sync(DataSourceFile().fetch())
