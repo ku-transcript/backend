@@ -2,7 +2,6 @@
 
 import os
 from flask import Flask, request, render_template, jsonify
-from script import get_student_data
 
 # Quickly import file from another folder (NOT GOOD!)
 import sys
@@ -14,6 +13,7 @@ from check_graduation import check_graduation
 # from calculate_total_credit import calculate
 from calculate_total_credit_sql import calculate
 from data_source_file import DataSourceFile
+from get_student_data import get_student_data
 
 import db
 
