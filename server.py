@@ -28,6 +28,12 @@ def allowed_file(filename):
     return '.' in filename and \
              filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+@app.after_request
+def after_request_func(response):
+    # Enable cors  
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
+  
 @app.route('/')
 def homepage():
     return render_template('index.html')
