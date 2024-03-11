@@ -38,6 +38,11 @@ def after_request_func(response):
 def homepage():
     return render_template('index.html')
 
+@app.route('/api/enrolled', methods=['POST'])
+    data = request.json
+  
+    print(data)
+  
 @app.route('/api/upload', methods=['POST'])
 def upload():
   

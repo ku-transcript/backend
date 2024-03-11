@@ -18,6 +18,6 @@ def sync(data):
                   (course['course_id'], course['course_name'], course['course_credit'], course['course_category'], course.get('course_faculty', None)))
 
     conn.commit()
-    conn.close() 
+    conn.close()
 
     print("Courses Data insert successfully.")

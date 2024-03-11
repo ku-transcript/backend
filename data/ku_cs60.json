@@ -210,6 +210,12 @@
     "course_category": "วิชาเฉพาะเลือก"
   },
   {
+    "course_id": "01418241",
+    "course_name": "Financial and Bangking Information Technology",
+    "course_credit": 3,
+    "course_category": "วิชาเฉพาะเลือก"
+  },
+  {
     "course_id": "01418235",
     "course_name": "Unix Operating System and Shell Programming",
     "course_credit": 3,
