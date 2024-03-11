@@ -3,6 +3,11 @@ from datetime import datetime
 
 def check_graduation(student_data):
     date_of_admission = student_data['date_of_admission']
+    
+    if isinstance(date_of_admission, str):
+      date_of_admission = datetime.strptime(date_of_admission, '%Y')
+      student_data["date_of_admission"] = date_of_admission
+    
     years = datetime.date(date_of_admission).year
 
     result = None

@@ -38,10 +38,15 @@ def after_request_func(response):
 def homepage():
     return render_template('index.html')
 
-@app.route('/api/enrolled', methods=['POST'])
-    data = request.json
+@app.route('/api/transcript', methods=['POST'])
+def transcript():
+    student_data = request.json
   
-    print(data)
+    student_data.update({
+      "total_credit_per_category": CreditSQLCalculator().calculate_total_credit(student_data["enrolled_courses"])
+    })
+    
+    return jsonify(check_graduation(student_data))
   
 @app.route('/api/upload', methods=['POST'])
 def upload():
