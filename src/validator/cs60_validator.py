@@ -62,7 +62,7 @@ class CS60Validator:
             return False
 
         # check sum of credit more then required minimum
-        sum_credit = sum([total_credit[c] for c in ['วิชาแกน', 'วิชาเฉพาะบังคับ', 'วิชาเฉพาะเลือก', 'ภาษากับการสื่อสาร', 'พลเมืองไทยและพลเมืองโลก', 'ศาสตร์แห่งผู้ประกอบการ', 'อยู่ดีมีสุข']])
+        sum_credit = sum([total_credit[c] for c in ['วิชาแกน', 'วิชาเฉพาะบังคับ', 'วิชาเฉพาะเลือก', 'ภาษากับการสื่อสาร', 'พลเมืองไทยและพลเมืองโลก', 'ศาสตร์แห่งผู้ประกอบการ', 'อยู่ดีมีสุข', 'สุนทรียศาสตร์']])
 
         if sum_credit < self.min_sum_credit:
             return False
