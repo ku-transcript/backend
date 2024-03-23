@@ -1,0 +1,120 @@
+definitions:
+  parser.Course:
+    properties:
+      course_category:
+        type: string
+      course_credit:
+        type: integer
+      course_faculty:
+        type: string
+      course_id:
+        type: string
+      course_name:
+        type: string
+      student_grade:
+        type: string
+    type: object
+  parser.Student:
+    properties:
+      date_of_admission:
+        type: string
+      enrolled_courses:
+        items:
+          $ref: '#/definitions/parser.Course'
+        type: array
+      student_cum_gpa:
+        type: number
+      student_en_name:
+        type: string
+      student_en_title:
+        type: string
+      student_faculty:
+        type: string
+      student_id:
+        type: string
+      student_major:
+        type: string
+      student_th_name:
+        type: string
+      student_th_title:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/curriculum:
+    get:
+      description: Retrieves a list of all available courses.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of courses
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/parser.Course'
+              type: array
+            type: array
+      summary: Get All Courses
+      tags:
+      - courses
+  /api/transcript/upload:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Upload a transcript and get the parsed data.
+      parameters:
+      - description: Transcript file
+        in: formData
+        name: transcript
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Student data
+          schema:
+            items:
+              $ref: '#/definitions/parser.Student'
+            type: array
+        "400":
+          description: Invalid transcript.
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Upload Transcript
+      tags:
+      - transcript
+  /api/transcript/validate:
+    post:
+      consumes:
+      - application/json
+      description: Validate the student's transcript and check if they are eligible
+        for graduation.
+      parameters:
+      - description: Student data
+        in: body
+        name: student
+        required: true
+        schema:
+          $ref: '#/definitions/parser.Student'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Student data
+          schema:
+            items:
+              $ref: '#/definitions/parser.Student'
+            type: array
+        "400":
+          description: Major not supported.
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Check Graduation
+      tags:
+      - transcript
+swagger: "2.0"
