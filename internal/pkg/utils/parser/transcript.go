@@ -2,6 +2,7 @@ package parser
 
 import (
 	"regexp"
+	"strconv"
 	"strings"
 )
 
@@ -17,7 +18,7 @@ type Course struct {
 	CourseID     string `json:"course_id"`
 	CourseName   string `json:"course_name"`
 	StudentGrade string `json:"student_grade"`
-	CourseCredit string `json:"course_credit"`
+	CourseCredit int    `json:"course_credit"`
 }
 
 type Student struct {
@@ -46,35 +47,30 @@ func ParseText(text string) Student {
 	matche3 := r3.FindStringSubmatch(text)
 	matche4 := r4.FindStringSubmatch(text)
 
-	// fmt.Println("Student No:", matche1[1])
-	// fmt.Println("Faculty Of:", matche1[2])
-	// fmt.Println("English Title:", matche2[1])
-	// fmt.Println("English Name:", matche2[2])
-	// fmt.Println("Field Of Study:", matche2[2])
-	// fmt.Println("Date of Admission:", matche3[1])
-	// fmt.Println("Thai Title:", matche4[1])
-	// fmt.Println("Thai Name:", matche4[2])
-
 	enrolledCourses := make([]Course, 0)
 
 	for _, match := range matches {
+		courseCredit, err := strconv.Atoi(strings.TrimSpace(match[4]))
+		if err != nil {
+			courseCredit = 0
+		}
 		enrolledCourses = append(enrolledCourses, Course{
-			CourseID:     match[1],
+			CourseID:     strings.TrimSpace(match[1]),
 			CourseName:   strings.TrimSpace(match[2]),
-			StudentGrade: match[3],
-			CourseCredit: match[4],
+			StudentGrade: strings.TrimSpace(match[3]),
+			CourseCredit: courseCredit,
 		})
 	}
 
 	return Student{
-		StudentId:       matche1[1],
-		StudentFaculty:  matche1[2],
-		StudentENTitle:  matche2[1],
-		StudentENName:   matche2[2],
-		StudentTHTitle:  matche4[1],
-		StudentTHName:   matche4[2],
-		StudentMajor:    matche2[3],
-		DateOfAdmission: matche3[1],
+		StudentId:       strings.TrimSpace(matche1[1]),
+		StudentFaculty:  strings.TrimSpace(matche1[2]),
+		StudentENTitle:  strings.TrimSpace(matche2[1]),
+		StudentENName:   strings.TrimSpace(matche2[2]),
+		StudentTHTitle:  strings.TrimSpace(matche4[1]),
+		StudentTHName:   strings.TrimSpace(matche4[2]),
+		StudentMajor:    strings.TrimSpace(matche2[3]),
+		DateOfAdmission: strings.TrimSpace(matche3[1]),
 		EnrolledCourses: enrolledCourses,
 	}
 }

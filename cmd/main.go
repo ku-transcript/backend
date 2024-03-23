@@ -1,14 +1,16 @@
 package main
 
 import (
-	"fmt"
-	"ku-transcript/internal/pkg/utils/parser"
-	"ku-transcript/internal/pkg/utils/pdf"
+	"ku-transcript/internal/app/controllers"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	text := pdf.ExtractText()
-	student := parser.ParseText(text)
 
-	fmt.Printf("%+v\n", student)
+	app := fiber.New()
+
+	controllers.Init(app)
+
+	app.Listen(":3000")
 }

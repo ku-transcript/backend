@@ -21,4 +21,6 @@
 go.work
 
 # Sample transcripts
-Transcripts
+Transcripts/
+
+tmp/
