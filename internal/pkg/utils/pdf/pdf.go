@@ -8,13 +8,13 @@ import (
 	"os/exec"
 )
 
-func ExtractText() string {
+func ExtractText(filename string) string {
 	// See "man pdftotext" for more options.
 	args := []string{
 		"-layout",  // Maintain (as best as possible) the original physical layout of the text.
 		"-nopgbrk", // Don't insert page breaks (form feed characters) between pages.
-		"Transcripts/STD_GRADE_REPORT_6410406860.pdf", // The input file.
-		"-", // Send the output to stdout.
+		filename,   // The input file.
+		"-",        // Send the output to stdout.
 	}
 	cmd := exec.CommandContext(context.Background(), "pdftotext", args...)
 
