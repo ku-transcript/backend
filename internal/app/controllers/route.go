@@ -24,34 +24,13 @@ func Init(app *fiber.App) {
 	})
 
 	app.Post("/api/transcript/validate", func(c *fiber.Ctx) error {
-		type Request struct {
-			EnrolledCourses []parser.Course `json:"enrolled_courses"`
-			StudentCumGPA   float64         `json:"student_cum_gpa"`
-			StudentMajor    string          `json:"student_major"`
-			DateOfAdmission string          `json:"date_of_admission"`
-		}
-
-		var request Request
-
+		var request parser.Student
 		if err := c.BodyParser(&request); err != nil {
 			return err
 		}
 
 		if strings.Compare(request.StudentMajor, "Computer Science") == 0 {
-			isGraduated, totalCredits, total := validator.CS60Validator(parser.Student{
-				EnrolledCourses: request.EnrolledCourses,
-				StudentCumGPA:   request.StudentCumGPA,
-				StudentMajor:    request.StudentMajor,
-				DateOfAdmission: request.DateOfAdmission,
-			})
-
-			response := map[string]interface{}{
-				"total_credits": totalCredits,
-				"total":         total,
-				"is_graduated":  isGraduated,
-			}
-
-			return c.JSON(response)
+			return c.JSON(validator.CS60Validator(request))
 		}
 
 		return c.JSON(map[string]interface{}{

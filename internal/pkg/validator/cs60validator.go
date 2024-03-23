@@ -6,7 +6,7 @@ import (
 	"regexp"
 )
 
-func CS60Validator(student parser.Student) (bool, map[string]int, int) {
+func CS60Validator(student parser.Student) map[string]interface{} {
 	requiredCredits := map[string]int{
 		"วิชาแกน":                 16,
 		"วิชาเฉพาะบังคับ":         55,
@@ -82,5 +82,9 @@ func CS60Validator(student parser.Student) (bool, map[string]int, int) {
 		isGraduated = false
 	}
 
-	return isGraduated, totalCredits, total
+	return map[string]interface{}{
+		"total_credits": totalCredits,
+		"total":         total,
+		"is_graduated":  isGraduated,
+	}
 }
