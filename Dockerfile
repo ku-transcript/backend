@@ -24,6 +24,7 @@ WORKDIR /
 RUN apt-get update && apt-get install -y poppler-utils
 
 COPY --from=build-stage /app/ku-transcript-backend /ku-transcript-backend
+COPY --from=build-stage /app/data /data
 
 EXPOSE 3000
 
