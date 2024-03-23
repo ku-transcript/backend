@@ -18,7 +18,7 @@ func Init(app *fiber.App) {
 	})
 
 	app.Get("/api/curriculum", func(c *fiber.Ctx) error {
-		courses := data.ReadCourses()
+		courses := data.ReadCourses("data")
 
 		return c.JSON(courses)
 	})
