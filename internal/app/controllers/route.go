@@ -66,16 +66,17 @@ func Init(app *fiber.App) {
 			text := pdf.ExtractText(file.Filename)
 			student, err = parser.ParseText(text)
 
+			// Delete the files from disk
+			if err := os.Remove(file.Filename); err != nil {
+				return err
+			}
+
 			if err != nil {
 				return c.Status(fiber.StatusBadRequest).JSON(map[string]interface{}{
 					"error": "Invalid transcript.",
 				})
 			}
 
-			// Delete the files from disk
-			if err := os.Remove(file.Filename); err != nil {
-				return err
-			}
 		}
 
 		return c.JSON(student)
