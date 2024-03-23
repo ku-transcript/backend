@@ -12,6 +12,7 @@ const (
 	pattern2      = `Name\s*(Miss|Mr\.) (.+)\s*Field Of Study\s*(.+)`
 	pattern3      = `Date Of Admission\s*(\w+ \d{1,2}, \d{4})`
 	pattern4      = `(น[\p{L}\p{N}\p{M}_]+) ([\p{L}\p{N}\p{M}_]+ [\p{L}\p{N}\p{M}_]+)` // [\p{L}\p{N}\p{M}_]+ match any unicode
+	pettern5      = `cum G.P.A. =\s*(\d+\.\d+)`
 )
 
 type Course struct {
@@ -31,9 +32,9 @@ type Student struct {
 	StudentTHTitle  string   `json:"student_th_title"`
 	StudentTHName   string   `json:"student_th_name"`
 	StudentMajor    string   `json:"student_major"`
+	StudentCumGPA   float64  `json:"student_cum_gpa"`
 	DateOfAdmission string   `json:"date_of_admission"`
 	EnrolledCourses []Course `json:"enrolled_courses"`
-	StudentCumGPA   float64  `json:"cum_gpa"`
 }
 
 func ParseText(text string) Student {
@@ -43,12 +44,14 @@ func ParseText(text string) Student {
 	r2, _ := regexp.Compile(pattern2)
 	r3, _ := regexp.Compile(pattern3)
 	r4, _ := regexp.Compile(pattern4)
+	r5, _ := regexp.Compile(pettern5)
 
 	matches := r.FindAllStringSubmatch(text, -1)
 	matche1 := r1.FindStringSubmatch(text)
 	matche2 := r2.FindStringSubmatch(text)
 	matche3 := r3.FindStringSubmatch(text)
 	matche4 := r4.FindStringSubmatch(text)
+	matche5 := r5.FindAllStringSubmatch(text, -1)
 
 	enrolledCourses := make([]Course, 0)
 
@@ -65,6 +68,12 @@ func ParseText(text string) Student {
 		})
 	}
 
+	studentCumGPA, err := strconv.ParseFloat(strings.TrimSpace(matche5[len(matche5)-1][1]), 64)
+
+	if err != nil {
+		studentCumGPA = 0
+	}
+
 	return Student{
 		StudentId:       strings.TrimSpace(matche1[1]),
 		StudentFaculty:  strings.TrimSpace(matche1[2]),
@@ -74,6 +83,7 @@ func ParseText(text string) Student {
 		StudentTHName:   strings.TrimSpace(matche4[2]),
 		StudentMajor:    strings.TrimSpace(matche2[3]),
 		DateOfAdmission: strings.TrimSpace(matche3[1]),
+		StudentCumGPA:   studentCumGPA,
 		EnrolledCourses: enrolledCourses,
 	}
 }
