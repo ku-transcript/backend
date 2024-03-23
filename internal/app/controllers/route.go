@@ -23,7 +23,7 @@ func Init(app *fiber.App) {
 		}
 
 		// Get all files from "documents" key
-		files := form.File["documents"] // => []*multipart.FileHeader
+		files := form.File["transcript"] // => []*multipart.FileHeader
 
 		for _, file := range files {
 			fmt.Println(file.Filename, file.Size, file.Header["Content-Type"][0])
