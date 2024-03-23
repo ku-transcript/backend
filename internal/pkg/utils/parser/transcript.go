@@ -15,10 +15,12 @@ const (
 )
 
 type Course struct {
-	CourseID     string `json:"course_id"`
-	CourseName   string `json:"course_name"`
-	StudentGrade string `json:"student_grade"`
-	CourseCredit int    `json:"course_credit"`
+	CourseID       string `json:"course_id"`
+	CourseName     string `json:"course_name"`
+	StudentGrade   string `json:"student_grade"`
+	CourseCredit   int    `json:"course_credit"`
+	CourseCategory string `json:"course_category"`
+	CourseFaculty  string `json:"course_faculty"`
 }
 
 type Student struct {
@@ -31,6 +33,7 @@ type Student struct {
 	StudentMajor    string   `json:"student_major"`
 	DateOfAdmission string   `json:"date_of_admission"`
 	EnrolledCourses []Course `json:"enrolled_courses"`
+	StudentCumGPA   float64  `json:"cum_gpa"`
 }
 
 func ParseText(text string) Student {
