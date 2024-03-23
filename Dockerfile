@@ -13,8 +13,8 @@ COPY . .
 RUN go build -o ku-transcript-backend cmd/main.go
 
 # Run the tests in the container
-# FROM build-stage AS run-test-stage
-# RUN go test -v ./...
+FROM build-stage AS run-test-stage
+RUN go test -v ./...
 
 # Deploy the application binary into a lean image
 FROM ubuntu:22.04 AS build-release-stage
