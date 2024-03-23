@@ -11,6 +11,10 @@ func Init(app *fiber.App) {
 		return c.SendString("Hello, World!")
 	})
 
+	app.Get("/health", func(c *fiber.Ctx) error {
+		return c.SendString("OK")
+	})
+
 	app.Get("/api/curriculum", transcript.GetCourses)
 
 	app.Post("/api/transcript/validate", transcript.Validate)
