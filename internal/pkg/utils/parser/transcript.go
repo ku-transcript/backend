@@ -1,18 +1,20 @@
 package parser
 
 import (
+	"errors"
 	"regexp"
 	"strconv"
 	"strings"
 )
 
 const (
-	coursePattern = `\s*(\d{8})\s*(.+)\s*([A-D][+]?|[FPNW])\s*(\d)`
-	pattern1      = `Student No\s*(\d{10})\s*Faculty Of\s*(.+)`
-	pattern2      = `Name\s*(Miss|Mr\.) (.+)\s*Field Of Study\s*(.+)`
-	pattern3      = `Date Of Admission\s*(\w+ \d{1,2}, \d{4})`
-	pattern4      = `(น[\p{L}\p{N}\p{M}_]+) ([\p{L}\p{N}\p{M}_]+ [\p{L}\p{N}\p{M}_]+)` // [\p{L}\p{N}\p{M}_]+ match any unicode
-	pettern5      = `cum G.P.A. =\s*(\d+\.\d+)`
+	transcriptPattern = `KASETSART UNIVERSITY`
+	coursePattern     = `\s*(\d{8})\s*(.+)\s*([A-D][+]?|[FPNW])\s*(\d)`
+	pattern1          = `Student No\s*(\d{10})\s*Faculty Of\s*(.+)`
+	pattern2          = `Name\s*(Miss|Mr\.) (.+)\s*Field Of Study\s*(.+)`
+	pattern3          = `Date Of Admission\s*(\w+ \d{1,2}, \d{4})`
+	pattern4          = `(น[\p{L}\p{N}\p{M}_]+) ([\p{L}\p{N}\p{M}_]+ [\p{L}\p{N}\p{M}_]+)` // [\p{L}\p{N}\p{M}_]+ match any unicode
+	pettern5          = `cum G.P.A. =\s*(\d+\.\d+)`
 )
 
 type Course struct {
@@ -37,7 +39,7 @@ type Student struct {
 	EnrolledCourses []Course `json:"enrolled_courses"`
 }
 
-func ParseText(text string) Student {
+func ParseText(text string) (Student, error) {
 
 	r, _ := regexp.Compile(coursePattern)
 	r1, _ := regexp.Compile(pattern1)
@@ -45,6 +47,13 @@ func ParseText(text string) Student {
 	r3, _ := regexp.Compile(pattern3)
 	r4, _ := regexp.Compile(pattern4)
 	r5, _ := regexp.Compile(pettern5)
+	r6, _ := regexp.Compile(transcriptPattern)
+
+	transcriptMatch := r6.FindString(text)
+
+	if transcriptMatch == "" {
+		return Student{}, errors.New("INVALID TRANSCRIPT")
+	}
 
 	matches := r.FindAllStringSubmatch(text, -1)
 	matche1 := r1.FindStringSubmatch(text)
@@ -85,5 +94,5 @@ func ParseText(text string) Student {
 		DateOfAdmission: strings.TrimSpace(matche3[1]),
 		StudentCumGPA:   studentCumGPA,
 		EnrolledCourses: enrolledCourses,
-	}
+	}, nil
 }
