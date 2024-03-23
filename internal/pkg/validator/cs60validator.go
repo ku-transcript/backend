@@ -2,6 +2,7 @@ package validator
 
 import (
 	"ku-transcript/internal/pkg/calculator"
+	"ku-transcript/internal/pkg/utils/data"
 	"ku-transcript/internal/pkg/utils/parser"
 	"regexp"
 )
@@ -20,7 +21,7 @@ func CS60Validator(student parser.Student) map[string]interface{} {
 	}
 	minSumCredit := 128
 
-	totalCredits, total := calculator.CalculateTotalCredits(student.EnrolledCourses, requiredCredits)
+	totalCredits, total := calculator.CalculateTotalCredits(data.ReadCourses("data"), student.EnrolledCourses, requiredCredits)
 	isGraduated := true
 
 	// Check if student has enough credits for each category

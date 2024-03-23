@@ -1,13 +1,10 @@
 package calculator
 
 import (
-	"ku-transcript/internal/pkg/utils/data"
 	"ku-transcript/internal/pkg/utils/parser"
 )
 
-func CalculateTotalCredits(enrolled_courses []parser.Course, required_credits map[string]int) (map[string]int, int) {
-
-	courses := data.ReadCourses()
+func CalculateTotalCredits(courses []parser.Course, enrolled_courses []parser.Course, required_credits map[string]int) (map[string]int, int) {
 
 	totalCredits := make(map[string]int)
 	total := 0
