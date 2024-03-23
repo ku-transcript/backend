@@ -52,13 +52,25 @@ func Init(app *fiber.App) {
 		for _, file := range files {
 			fmt.Println(file.Filename, file.Size, file.Header["Content-Type"][0])
 
+			if file.Header["Content-Type"][0] != "application/pdf" {
+				return c.Status(fiber.StatusBadRequest).JSON(map[string]interface{}{
+					"error": "Invalid file type.",
+				})
+			}
+
 			// Save the files to disk
 			if err := c.SaveFile(file, fmt.Sprintf("./%s", file.Filename)); err != nil {
 				return err
 			}
 
 			text := pdf.ExtractText(file.Filename)
-			student = parser.ParseText(text)
+			student, err = parser.ParseText(text)
+
+			if err != nil {
+				return c.Status(fiber.StatusBadRequest).JSON(map[string]interface{}{
+					"error": "Invalid transcript.",
+				})
+			}
 
 			// Delete the files from disk
 			if err := os.Remove(file.Filename); err != nil {
