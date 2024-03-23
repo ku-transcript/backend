@@ -33,3 +33,13 @@ Run the binary
 ```sh
 ./ku-transcript-backend
 ```
+
+## Generate Swagger Documentation
+
+refer to [gofiber/swagger](https://github.com/gofiber/swagger?tab=readme-ov-files) for more information.
+
+```sh
+swag init --parseDependency -g ../../../cmd/main.go -d internal/app/controllers/
+```
+
+Go to `localhost:3000/swagger` to view the documentation.

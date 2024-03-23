@@ -1,0 +1,183 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/api/curriculum": {
+            "get": {
+                "description": "Retrieves a list of all available courses.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "courses"
+                ],
+                "summary": "Get All Courses",
+                "responses": {
+                    "200": {
+                        "description": "List of courses",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/parser.Course"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/transcript/upload": {
+            "post": {
+                "description": "Upload a transcript and get the parsed data.",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "transcript"
+                ],
+                "summary": "Upload Transcript",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "Transcript file",
+                        "name": "transcript",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Student data",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/parser.Student"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid transcript.",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/api/transcript/validate": {
+            "post": {
+                "description": "Validate the student's transcript and check if they are eligible for graduation.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "transcript"
+                ],
+                "summary": "Check Graduation",
+                "parameters": [
+                    {
+                        "description": "Student data",
+                        "name": "student",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/parser.Student"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Student data",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/parser.Student"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Major not supported.",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "parser.Course": {
+            "type": "object",
+            "properties": {
+                "course_category": {
+                    "type": "string"
+                },
+                "course_credit": {
+                    "type": "integer"
+                },
+                "course_faculty": {
+                    "type": "string"
+                },
+                "course_id": {
+                    "type": "string"
+                },
+                "course_name": {
+                    "type": "string"
+                },
+                "student_grade": {
+                    "type": "string"
+                }
+            }
+        },
+        "parser.Student": {
+            "type": "object",
+            "properties": {
+                "date_of_admission": {
+                    "type": "string"
+                },
+                "enrolled_courses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/parser.Course"
+                    }
+                },
+                "student_cum_gpa": {
+                    "type": "number"
+                },
+                "student_en_name": {
+                    "type": "string"
+                },
+                "student_en_title": {
+                    "type": "string"
+                },
+                "student_faculty": {
+                    "type": "string"
+                },
+                "student_id": {
+                    "type": "string"
+                },
+                "student_major": {
+                    "type": "string"
+                },
+                "student_th_name": {
+                    "type": "string"
+                },
+                "student_th_title": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
